@@ -929,6 +929,14 @@ mark.ph {
   color: var(--paper);
   --muted: var(--stone);
 }
+.process__link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.process__step--final {
+  cursor: pointer;
+}
 .process__step--final:hover {
   background: var(--ink-2);
 }

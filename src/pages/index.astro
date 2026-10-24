@@ -163,7 +163,7 @@ const placeholderCount = countPlaceholders({ projects: projects.map(({ title, ta
         <li class="process__step process__step--final" data-reveal style="--d:3">
           <span class="process__num">→</span>
           <h3 class="process__title">See it applied</h3>
-          <p class="process__text"><a href="#work">Browse the case studies</a> to see these steps in real projects.</p>
+          <p class="process__text"><a class="process__link" href={`/work/${projects[0].slug}`}>Browse the case studies</a> to see these steps in real projects.</p>
         </li>
       </ol>
     </div>

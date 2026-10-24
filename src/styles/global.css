@@ -283,20 +283,99 @@ mark.ph {
   text-decoration: none;
   font-weight: 600;
 }
-.nav__mark {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: var(--lime);
-  color: var(--ink);
-  font: 800 0.85rem/1 var(--font-display);
-  letter-spacing: -0.02em;
-  transition: transform 0.5s var(--ease);
+.avatar {
+  --ex: 0px;
+  --ey: 0px;
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(242, 238, 230, 0.14);
+  transition: transform 0.5s var(--ease), box-shadow 0.4s;
 }
-.nav__brand:hover .nav__mark {
-  transform: rotate(-8deg) scale(1.05);
+.avatar svg {
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.avatar__bg { fill: var(--lime); }
+.avatar__body { fill: #2b2a27; }
+.avatar__shirt { fill: #f2eee6; }
+.avatar__lapel { fill: #1c1b19; }
+.avatar__skin { fill: #e9b98f; }
+.avatar__neck { fill: #d9a67c; }
+.avatar__stubble { fill: #3a2a20; opacity: 0.16; }
+.avatar__hair { fill: #1d1712; }
+.avatar__hl { fill: #5b4636; }
+.avatar__stud { fill: #f4d77a; }
+.avatar__brow {
+  fill: none;
+  stroke: #1d1712;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+.avatar__nose {
+  fill: none;
+  stroke: #b97f57;
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+.avatar__eye { fill: #1b1713; }
+.avatar__smile {
+  fill: none;
+  stroke: #8a4b34;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+.avatar__figure {
+  transform-origin: 24px 48px;
+  animation: avatar-bob 3.6s ease-in-out infinite;
+}
+.avatar__eyes {
+  transform: translate(var(--ex), var(--ey));
+  transition: transform 0.18s ease-out;
+}
+.avatar__eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: avatar-blink 5s infinite;
+}
+.nav__brand:hover .avatar {
+  transform: scale(1.08) rotate(-4deg);
+  box-shadow: 0 0 0 3px var(--lime);
+}
+.nav__brand:hover .avatar__smile {
+  transform: scaleY(1.5);
+  transform-box: fill-box;
+  transform-origin: top center;
+}
+@keyframes avatar-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(1.2px) rotate(1.2deg); }
+}
+@keyframes avatar-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+.nav__id {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 1;
+}
+.nav__name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.nav__role {
+  font: 500 0.68rem/1 var(--font-mono, ui-monospace, monospace);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+@media (prefers-reduced-motion: reduce) {
+  .avatar__figure, .avatar__eye { animation: none; }
 }
 .nav__links {
   display: flex;
@@ -320,7 +399,7 @@ mark.ph {
   color: var(--ink);
 }
 @media (max-width: 560px) {
-  .nav__name {
+  .nav__id {
     display: none;
   }
   .nav__links a {

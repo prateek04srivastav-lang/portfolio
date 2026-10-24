@@ -1,0 +1,14 @@
+---
+// Renders text from the data files, highlighting [[placeholders]].
+import { rich } from '../scripts/rich';
+
+interface Props {
+  text: string;
+  as?: string;
+  class?: string;
+  style?: string;
+}
+const { text, as: Tag = 'span', class: className, style } = Astro.props;
+---
+
+<Tag class={className} style={style} set:html={rich(text)} />

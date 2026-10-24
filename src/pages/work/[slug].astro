@@ -1,0 +1,272 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Media from '../../components/Media.astro';
+import Rich from '../../components/Rich.astro';
+import Contact from '../../components/Contact.astro';
+import { projects, type Project } from '../../data/projects';
+import { countPlaceholders, plain } from '../../scripts/rich';
+
+export function getStaticPaths() {
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+interface Props {
+  project: Project;
+  next: Project;
+}
+const { project: p, next } = Astro.props;
+
+const sections = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'problem', label: 'Problem & context' },
+  { id: 'users', label: 'Users & challenges' },
+  { id: 'flows', label: 'Journeys & IA' },
+  { id: 'screens', label: p.wireframes?.length ? 'Wireframes & UI' : 'Interface' },
+  { id: 'decisions', label: 'Design decisions' },
+  ...(p.designSystem ? [{ id: 'system', label: 'Design system' }] : []),
+  { id: 'collaboration', label: 'Collaboration' },
+  { id: 'outcomes', label: p.outcomes.measured ? 'Outcomes' : 'Intended impact' },
+];
+const num = (id: string) => String(sections.findIndex((s) => s.id === id) + 1).padStart(2, '0');
+
+const description = plain(p.tagline).startsWith('One line') ? `${p.title} — a case study by Prateek Srivastav.` : plain(p.tagline);
+---
+
+<Layout title={`${p.title} case study`} description={description} image={p.cover.src || undefined} placeholderCount={countPlaceholders(p)}>
+  <!-- Hero -->
+  <header class="case-hero">
+    <div class="container">
+      <a class="back-link" href="/#work"><span aria-hidden="true">←</span> All work</a>
+      <p class="eyebrow"><Rich text={p.category} /></p>
+      <h1 class="display case-hero__title">{p.title}</h1>
+      <Rich as="p" class="case-hero__tagline" text={p.tagline} />
+
+      <dl class="case-meta">
+        <div><dt>Role</dt><dd><Rich text={p.role} /></dd></div>
+        <div><dt>Context</dt><dd><Rich text={p.context} /></dd></div>
+        <div><dt>Timeline</dt><dd><Rich text={p.timeline} /></dd></div>
+        <div><dt>Year</dt><dd><Rich text={p.year} /></dd></div>
+      </dl>
+
+      <div class="case-cover" data-reveal>
+        <Media media={p.cover} title={p.title} accent={p.accent} eager />
+      </div>
+    </div>
+  </header>
+
+  <div class="theme-light" style="padding-block: clamp(72px, 9vw, 128px)">
+    <div class="container case-layout">
+      <nav class="toc" aria-label="Case study sections">
+        <ol>
+          {
+            sections.map((s) => (
+              <li>
+                <a href={`#${s.id}`} data-toc-link={s.id}>
+                  {s.label}
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+
+      <article>
+        <!-- 01 Overview -->
+        <section id="overview" class="case-section" data-reveal>
+          <span class="case-section__num">{num('overview')}</span>
+          <h2>Overview</h2>
+          <Rich as="p" class="prose" text={p.overview} />
+          <div class="two-col">
+            <div>
+              <h3>Responsibilities</h3>
+              <ul class="ticks">{p.responsibilities.map((r) => <li><Rich text={r} /></li>)}</ul>
+            </div>
+            <div>
+              <h3>Scope</h3>
+              <ul class="ticks">{p.scope.map((r) => <li><Rich text={r} /></li>)}</ul>
+              <h3 style="margin-top:28px">Tools</h3>
+              <div class="chips">{p.tools.map((t) => <span class="chip"><Rich text={t} /></span>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 Problem -->
+        <section id="problem" class="case-section" data-reveal>
+          <span class="case-section__num">{num('problem')}</span>
+          <h2>Problem &amp; business context</h2>
+          <div class="panel panel--accent">
+            <p class="eyebrow" style="margin-bottom:14px">Problem statement</p>
+            <Rich as="p" class="prose" text={p.problem.statement} />
+          </div>
+          <h3 style="margin-top:32px">Business context</h3>
+          <Rich as="p" class="prose" text={p.problem.context} />
+          {
+            !!(p.problem.challenges?.length || p.problem.goals?.length) && (
+              <div class="two-col">
+                {p.problem.challenges?.length ? (
+                  <div class="panel">
+                    <h3>Key challenges</h3>
+                    <ul class="ticks ticks--warn">
+                      {p.problem.challenges.map((c) => (
+                        <li><Rich text={c} /></li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {p.problem.goals?.length ? (
+                  <div class="panel">
+                    <h3>Design goals</h3>
+                    <ul class="ticks">
+                      {p.problem.goals.map((g) => (
+                        <li><Rich text={g} /></li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+            )
+          }
+        </section>
+
+        <!-- 03 Users -->
+        <section id="users" class="case-section" data-reveal>
+          <span class="case-section__num">{num('users')}</span>
+          <h2>User needs &amp; workflow challenges</h2>
+          <p class="prose"><strong>Who:</strong> <Rich text={p.users.who} /></p>
+          <div class="two-col">
+            <div class="panel">
+              <h3>What users need</h3>
+              <ul class="ticks">{p.users.needs.map((n) => <li><Rich text={n} /></li>)}</ul>
+            </div>
+            <div class="panel">
+              <h3>What got in the way</h3>
+              <ul class="ticks ticks--warn">{p.users.challenges.map((n) => <li><Rich text={n} /></li>)}</ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 04 Flows -->
+        <section id="flows" class="case-section" data-reveal>
+          <span class="case-section__num">{num('flows')}</span>
+          <h2>Journeys, IA &amp; key flows</h2>
+          <h3>User journey</h3>
+          <Rich as="p" class="prose" text={p.flows.journey} />
+          <h3 style="margin-top:28px">Information architecture</h3>
+          <Rich as="p" class="prose" text={p.flows.ia} />
+          <div class="flow-grid">
+            {
+              p.flows.keyFlows.map((f) => (
+                <div class="flow-step">
+                  <h3><Rich text={f.title} /></h3>
+                  <Rich as="p" class="muted" text={f.text} />
+                </div>
+              ))
+            }
+          </div>
+          {p.flows.media?.map((m) => <Media media={m} />)}
+        </section>
+
+        <!-- 05 Screens -->
+        <section id="screens" class="case-section" data-reveal>
+          <span class="case-section__num">{num('screens')}</span>
+          <h2>{p.wireframes?.length ? 'Wireframes & high-fidelity screens' : 'High-fidelity screens'}</h2>
+          {
+            p.wireframes?.length ? (
+              <>
+                <p class="gallery-label">Wireframes</p>
+                <div class="gallery gallery--2">
+                  {p.wireframes.map((m) => (
+                    <Media media={m} />
+                  ))}
+                </div>
+                <p class="gallery-label">High fidelity</p>
+              </>
+            ) : null
+          }
+          <div class="gallery">{p.screens.map((m) => <Media media={m} />)}</div>
+        </section>
+
+        <!-- 06 Decisions -->
+        <section id="decisions" class="case-section" data-reveal>
+          <span class="case-section__num">{num('decisions')}</span>
+          <h2>Key design decisions</h2>
+          <div class="decisions">
+            {
+              p.decisions.map((d, i) => (
+                <div class="decision">
+                  <span class="decision__num">{String(i + 1).padStart(2, '0')}</span>
+                  <h3><Rich text={d.title} /></h3>
+                  <Rich as="p" text={d.rationale} />
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- 07 Design system -->
+        {
+          p.designSystem && (
+            <section id="system" class="case-section" data-reveal>
+              <span class="case-section__num">{num('system')}</span>
+              <h2>Design system &amp; components</h2>
+              <Rich as="p" class="prose" text={p.designSystem.text} />
+              <div class="chips" style="margin-top:24px">
+                {p.designSystem.components.map((c) => (
+                  <span class="chip"><Rich text={c} /></span>
+                ))}
+              </div>
+              {p.designSystem.media && <div class="gallery">{p.designSystem.media.map((m) => <Media media={m} />)}</div>}
+            </section>
+          )
+        }
+
+        <!-- 08 Collaboration -->
+        <section id="collaboration" class="case-section" data-reveal>
+          <span class="case-section__num">{num('collaboration')}</span>
+          <h2>Collaboration &amp; handoff</h2>
+          <ul class="ticks prose">{p.collaboration.map((c) => <li><Rich text={c} /></li>)}</ul>
+        </section>
+
+        <!-- 09 Outcomes -->
+        <section id="outcomes" class="case-section" data-reveal>
+          <span class="case-section__num">{num('outcomes')}</span>
+          <h2>{p.outcomes.measured ? 'Outcomes' : 'Intended impact'}</h2>
+          {
+            p.outcomes.measured ? (
+              <span class="outcome-label">Verified results</span>
+            ) : (
+              <span class="outcome-label outcome-label--intent">Design intentions — not yet measured</span>
+            )
+          }
+          <ul class="ticks prose">{p.outcomes.items.map((o) => <li><Rich text={o} /></li>)}</ul>
+          {
+            p.links?.length ? (
+              <div class="case-links">
+                {p.links.map((l) => (
+                  <a class="btn btn--ghost" href={l.url} target="_blank" rel="noopener">
+                    {l.label} <span class="arrow" aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            ) : null
+          }
+        </section>
+      </article>
+    </div>
+  </div>
+
+  <!-- Next project -->
+  <div class="container">
+    <a class="next-project" href={`/work/${next.slug}`}>
+      <span class="eyebrow">Next case study</span>
+      <span class="display next-project__title">{next.title} <span class="arrow" aria-hidden="true">→</span></span>
+    </a>
+  </div>
+
+  <div class="theme-light">
+    <Contact />
+  </div>
+</Layout>

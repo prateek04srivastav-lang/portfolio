@@ -100,7 +100,7 @@ To update later, run `npm run build` again and drag the new `dist` folder into *
 Every change you push then goes live automatically.
 
 ### After your first publish
-Open `astro.config.mjs` and replace `https://your-portfolio.netlify.app` with your real address, then publish again. This makes the LinkedIn/Slack preview image work correctly.
+Open `astro.config.mjs` and replace `https://prateek-srivastav.netlify.app` with your real address, then publish again. This makes the LinkedIn/Slack preview image work correctly.
 
 ---
 

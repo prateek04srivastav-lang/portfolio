@@ -270,7 +270,7 @@ export const projects: Project[] = [
     year: '2025',
     accent: 'lime',
     cover: {
-      src: '/images/work/greenstitch/cover.png',
+      src: '/images/work/road-pilot-driver/cover.png',
       alt: 'Road Pilot Driver app showing splash screen and home dashboard with delivery jobs, pickup locations and route details',
       ratio: '4136/2626',
     },
@@ -330,9 +330,9 @@ export const projects: Project[] = [
       ],
     },
     screens: [
-      { src: '/images/work/greenstitch/screen-1.png', alt: 'Road Pilot Driver — Manage Shipments: home screen with active job AUX7624 showing Lucknow to Gurgaon route, owner details and real-time tracking map', ratio: '1672/941' },
-      { src: '/images/work/greenstitch/screen-2.png', alt: 'Road Pilot Driver — Shipment Booking & Confirmation: confirm shipment summary with route overview map and shipment booked success state', ratio: '1672/941' },
-      { src: '/images/work/greenstitch/screen-3.png', alt: 'Road Pilot Driver — Find the Right Loads Faster: filter jobs screen with route details, distance and earnings sliders, and shipment detail with timeline', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-1.png', alt: 'Road Pilot Driver — Manage Shipments: home screen with active job AUX7624 showing Lucknow to Gurgaon route, owner details and real-time tracking map', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-2.png', alt: 'Road Pilot Driver — Shipment Booking & Confirmation: confirm shipment summary with route overview map and shipment booked success state', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-3.png', alt: 'Road Pilot Driver — Find the Right Loads Faster: filter jobs screen with route details, distance and earnings sliders, and shipment detail with timeline', ratio: '1672/941' },
     ],
     decisions: [
       { title: 'Visual hierarchy — key actions as focal points', rationale: 'Job cards and primary CTAs are the focal points on each screen, followed by supporting interaction elements, so drivers can act quickly while on the road.' },

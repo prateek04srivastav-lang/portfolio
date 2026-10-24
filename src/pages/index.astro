@@ -4,7 +4,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import Contact from '../components/Contact.astro';
 import Media from '../components/Media.astro';
 import Rich from '../components/Rich.astro';
-import { site, hero, experience, process, about } from '../data/site';
+import { site, hero, experience, process, about, aiWorkflow } from '../data/site';
 import { projects, archive, prototypes } from '../data/projects';
 import { countPlaceholders } from '../scripts/rich';
 
@@ -15,7 +15,7 @@ const words = hero.lines.flatMap((line, l) =>
 const fullHeadline = `${hero.lines.join(' ').replace(/\*/g, '')} ${hero.rotating.join(', ')}`;
 const marqueeItems = ['Enterprise SaaS', 'AI-powered products', 'Complex workflows', 'Dashboards', 'Design systems', 'Information architecture', 'Prototyping'];
 
-const placeholderCount = countPlaceholders({ projects: projects.map(({ title, tagline, role, context, category }) => ({ title, tagline, role, context, category })), experience, site });
+const placeholderCount = countPlaceholders({ projects: projects.map(({ title, tagline, role, context, category }) => ({ title, tagline, role, context, category })), experience, aiWorkflow, site });
 ---
 
 <Layout placeholderCount={placeholderCount}>
@@ -166,6 +166,30 @@ const placeholderCount = countPlaceholders({ projects: projects.map(({ title, ta
           <p class="process__text"><a href="#work">Browse the case studies</a> to see these steps in real projects.</p>
         </li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ── AI in my workflow ────────────────────────────── -->
+  <section id="ai" class="section theme-light" style="padding-top:0" aria-labelledby="ai-title">
+    <div class="container">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal>AI in my workflow</p>
+          <h2 id="ai-title" class="h-section" data-reveal style="margin-top:20px">Tools that sharpen <em>the thinking.</em></h2>
+        </div>
+        <p class="lead" data-reveal>{aiWorkflow.intro}</p>
+      </div>
+
+      <ul class="ai-tools">
+        {
+          aiWorkflow.items.map((tool, i) => (
+            <li class="ai-tools__item" data-reveal style={`--d:${i}`}>
+              <img src={tool.icon} alt="" width="44" height="44" loading="lazy" />
+              <span>{tool.name}</span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 

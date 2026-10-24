@@ -119,6 +119,18 @@ export const process = [
   },
 ];
 
+export const aiWorkflow = {
+  intro:
+    'I use AI as a thinking partner, not a shortcut — to pressure-test screen flows, structure information logically and keep the end result simple for real users. Every output is reviewed and shaped by design judgement.',
+  items: [
+    { name: 'Claude', icon: '/images/ai/claude.svg' },
+    { name: 'ChatGPT', icon: '/images/ai/chatgpt.svg' },
+    { name: 'Figma Make', icon: '/images/ai/figma-make.svg' },
+    { name: 'Gemini', icon: '/images/ai/gemini.svg' },
+    { name: 'Canva', icon: '/images/ai/canva.svg' },
+  ],
+};
+
 export const about = {
   intro:
     'I’m Prateek, a Senior UI/UX and Product Designer who enjoys the hard problems: enterprise platforms, AI-driven analytics and workflows with lots of data and lots of edge cases.',

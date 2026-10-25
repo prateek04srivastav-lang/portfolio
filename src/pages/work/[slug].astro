@@ -45,6 +45,7 @@ const description = plain(p.tagline).startsWith('One line') ? `${p.title} — a 
       <Rich as="p" class="case-hero__tagline" text={p.tagline} />
 
       <dl class="case-meta">
+        <div><dt>Type</dt><dd>{p.kind}</dd></div>
         <div><dt>Role</dt><dd><Rich text={p.role} /></dd></div>
         <div><dt>Context</dt><dd><Rich text={p.context} /></dd></div>
         <div><dt>Timeline</dt><dd><Rich text={p.timeline} /></dd></div>

@@ -91,30 +91,37 @@ export const experience = [
 export const process = [
   {
     title: 'Research',
+    seenIn: [{ label: 'CBRE inspector app', href: '#experience' }],
     text: 'Stakeholder conversations, user interviews, analytics and heuristic reviews to understand who the users are and where today’s workflow breaks.',
   },
   {
     title: 'Problem framing',
+    seenIn: [{ label: 'Nexora.ai', href: '/work/nexora-ai' }, { label: 'ReverseLogix', href: '/work/reverselogix' }],
     text: 'Turning requirements into clear problem statements, success criteria and constraints — so the team agrees on what we are solving before how.',
   },
   {
     title: 'Information architecture',
+    seenIn: [{ label: 'Nexora.ai', href: '/work/nexora-ai' }, { label: 'Road Pilot Driver', href: '/work/road-pilot-driver' }],
     text: 'Structuring dense data, entities and navigation so complex products feel predictable, scannable and easy to find your way around.',
   },
   {
     title: 'User flows',
+    seenIn: [{ label: 'Nexora.ai', href: '/work/nexora-ai' }, { label: 'ReverseLogix', href: '/work/reverselogix' }],
     text: 'Mapping end-to-end journeys, decision points, edge cases and empty, loading and error states before pixels.',
   },
   {
     title: 'Prototyping',
+    seenIn: [{ label: 'Nexora.ai', href: '/work/nexora-ai' }, { label: 'ReverseLogix', href: '/work/reverselogix' }],
     text: 'From low-fidelity wireframes to interactive high-fidelity prototypes that let stakeholders and developers feel the experience early.',
   },
   {
     title: 'Usability',
+    seenIn: [{ label: 'CBRE inspector app', href: '#experience' }],
     text: 'Validating with users and reviews, checking accessibility and contrast, and iterating on what slows people down.',
   },
   {
     title: 'Design systems',
+    seenIn: [{ label: 'Nexora.ai', href: '/work/nexora-ai' }],
     text: 'Tokens, reusable components and interaction patterns documented for developers — consistency that scales across products.',
   },
 ];
@@ -136,6 +143,7 @@ export const about = {
     'I’m Prateek, a Senior UI/UX and Product Designer who enjoys the hard problems: enterprise platforms, AI-driven analytics and workflows with lots of data and lots of edge cases.',
   body: [
     'My coding background (HTML, CSS, React) helps me design with technical feasibility in mind and speak the same language as engineering teams — which makes handoff faster and the shipped product closer to the design.',
+    'On complex products I start with the workflow, not the screen: who does what, in which order, with which data, and where it breaks. I then structure the information and flows before visual design, and work closely with product managers and engineers — sharing flows, interaction states and component specs so what ships matches what was designed.',
     'Outside product work I explore motion design and dynamic animation, which shapes how I think about feedback, transitions and clarity in interfaces.',
   ],
   skills: [

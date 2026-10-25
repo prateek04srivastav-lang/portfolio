@@ -42,6 +42,8 @@ export type Project = {
   team: string;
   timeline: string;
   tools: string[];
+  /** Shown on cards and the case-study header so readers can tell shipped product work from concepts. */
+  kind: 'Product work' | 'Concept project';
   /** `challenges` and `goals` are optional lists shown under the business context. */
   problem: { statement: string; context: string; challenges?: string[]; goals?: string[] };
   users: { who: string; needs: string[]; challenges: string[] };
@@ -61,6 +63,7 @@ export const projects: Project[] = [
   // ───────────────────────── PROV.AI ─────────────────────────
   {
     slug: 'nexora-ai',
+    kind: 'Product work',
     title: 'Nexora.ai',
     tagline: 'An AI-powered data analytics platform that helps teams turn complex data into trusted, actionable insights.',
     category: 'Enterprise AI · SaaS',
@@ -68,7 +71,7 @@ export const projects: Project[] = [
     year: '2026',
     accent: 'lime',
     cover: {
-      src: '/images/work/nexora-ai/cover.png',
+      src: '/images/work/nexora-ai/cover.jpg',
       alt: 'Nexora.ai home dashboard showing workspace navigation, metric tiles for queries, connectors, data sources and team members, recent activity feed, pinned chart artifacts, and saved dashboards',
       ratio: '1487/1058',
     },
@@ -128,16 +131,15 @@ export const projects: Project[] = [
         { title: 'Profiling & data governance', text: 'Help users review quality findings, classify PII, and validate sensitive data.' },
         { title: 'Dashboard creation', text: 'Enable users to create dashboards, add widgets, edit visualizations, and save changes directly within the dashboard builder.' },
       ],
-      media: [{ src: '/images/work/nexora-ai/user-journey.png', alt: 'Nexora.ai user journey diagram showing 8 steps from connecting a data source to exporting results, with AI assist touchpoints at schema discovery, PII classification, and insight generation', ratio: '16/9' }],
+      media: [{ src: '/images/work/nexora-ai/user-journey.jpg', alt: 'Nexora.ai user journey diagram showing 8 steps from connecting a data source to exporting results, with AI assist touchpoints at schema discovery, PII classification, and insight generation', ratio: '16/9' }],
     },
     wireframes: [
-      { src: '/images/work/nexora-ai/wireframes-1.png', alt: 'Low-fidelity wireframes: Home Dashboard and Data Connector connection flow side by side', ratio: '3/2' },
-      { src: '/images/work/nexora-ai/wireframes-2.png', alt: 'Low-fidelity wireframes: Home Dashboard, Data Connector, Profiling & Data Quality, Chat with AI, and Dashboard Builder', ratio: '3/2' },
+      { src: '/images/work/nexora-ai/wireframes-1.jpg', alt: 'Low-fidelity wireframes: Home Dashboard and Data Connector connection flow side by side', ratio: '3/2' },
+      { src: '/images/work/nexora-ai/wireframes-2.jpg', alt: 'Low-fidelity wireframes: Home Dashboard, Data Connector, Profiling & Data Quality, Chat with AI, and Dashboard Builder', ratio: '3/2' },
     ],
     screens: [
-      { src: '/images/work/nexora-ai/screen-1.png', alt: 'Nexora.ai Chat screen — AI-powered data assistant showing suggested prompts, selected data context panel, and a revenue by region bar chart response', ratio: '1672/941' },
-      { src: '/images/work/nexora-ai/screen-2.png', alt: 'Nexora.ai Chat screen — continued conversation view with AI-generated insight and data visualization', ratio: '1672/941' },
-      { src: '/images/work/nexora-ai/screen-3.png', alt: 'Nexora.ai Chat screen — additional state showing AI chat interface with data exploration prompts', ratio: '1672/941' },
+      { src: '/images/work/nexora-ai/screen-1.jpg', alt: 'Nexora.ai Chat — AI data assistant with quick actions (explore data, analyse and visualise, generate SQL, check data quality), suggested prompts, a selected-data context panel, and a revenue-by-region chart answer', caption: 'Chat: users pick their data context on the right, then ask in plain language; answers come back as charts they can save.', ratio: '1672/941' },
+      { src: '/images/work/nexora-ai/screen-2.jpg', alt: 'Nexora.ai Settings — tabbed settings (General, Workspace, Data & Connections, AI & Models, Notifications, Security, Team) with profile, appearance, language and preference controls, plus workspace settings and account usage', caption: 'Settings: account, workspace and platform configuration grouped into tabs, so admins and everyday users each find their controls quickly.', ratio: '1672/941' },
     ],
     decisions: [
       { title: 'Keep database types fixed during connection editing', rationale: 'Protect connection integrity and prevent accidental source changes mid-workflow.' },
@@ -166,6 +168,7 @@ export const projects: Project[] = [
   // ─────────────────────── REVERSELOGIX ───────────────────────
   {
     slug: 'reverselogix',
+    kind: 'Concept project',
     title: 'ReverseLogix',
     tagline: 'An AI-assisted returns workflow that makes return status, refunds and timelines clear.',
     category: 'Returns management · AI workflow',
@@ -234,8 +237,8 @@ export const projects: Project[] = [
       ],
     },
     wireframes: [
-      { src: '/images/work/reverselogix/wireframe-1.png', alt: 'ReverseLogix wireframe — Step 1: Find Your Order screen with Order ID and Email fields, 4-step progress stepper, and AI Return Bot in sidebar', ratio: '1487/1058' },
-      { src: '/images/work/reverselogix/wireframe-2.png', alt: 'ReverseLogix wireframe — Step 2: Select Items to Return screen showing product list with checkboxes, prices, and return deadlines', ratio: '1486/1058' },
+      { src: '/images/work/reverselogix/wireframe-1.jpg', alt: 'ReverseLogix wireframe — Step 1: Find Your Order screen with Order ID and Email fields, 4-step progress stepper, and AI Return Bot in sidebar', ratio: '1487/1058' },
+      { src: '/images/work/reverselogix/wireframe-2.jpg', alt: 'ReverseLogix wireframe — Step 2: Select Items to Return screen showing product list with checkboxes, prices, and return deadlines', ratio: '1486/1058' },
     ],
     screens: [
       { src: '/images/work/reverselogix/screen-1.png', alt: 'ReverseLogix Step 1 — Find Your Order: Order ID and email fields with 4-step progress stepper and AI Return Bot in sidebar', ratio: '2880/2048' },
@@ -243,8 +246,8 @@ export const projects: Project[] = [
       { src: '/images/work/reverselogix/screen-3.png', alt: 'ReverseLogix Step 3 — Reason & Method: reason for return text field, AI-assisted photo attachment with damage detection, and return method selection panel', ratio: '2880/2048' },
     ],
     decisions: [
-      { title: 'Persistent progress stepper across all wizard steps', rationale: 'Users always know how far along they are and what comes next, reducing drop-off on a multi-step flow.' },
-      { title: 'Centralise status, details and refund in one dashboard', rationale: 'Keeping all return information in a single view eliminates the need to navigate multiple pages and reduces support contact.' },
+      { title: 'Persistent progress stepper across all wizard steps', rationale: 'Users always know how far along they are and what comes next, which is intended to reduce drop-off on a multi-step flow.' },
+      { title: 'Centralise status, details and refund in one dashboard', rationale: 'Keeping all return information in a single view removes the need to jump between pages, with the aim of reducing basic support queries.' },
       { title: 'Embed AI Bot directly in the sidebar', rationale: 'Positioning the AI assistant persistently in the sidebar means help is available at every step without interrupting the main workflow.' },
     ],
     collaboration: ['End-to-end concept design — user flows, wireframes, high-fidelity UI and prototype created independently in Figma.'],
@@ -263,6 +266,7 @@ export const projects: Project[] = [
   // ──────────────────────── ROAD PILOT DRIVER ────────────────────────
   {
     slug: 'road-pilot-driver',
+    kind: 'Concept project',
     title: 'Road Pilot Driver',
     tagline: 'A mobile app that helps truck drivers manage deliveries, routes and pickups — all in one place.',
     category: 'Mobile · Logistics',
@@ -330,9 +334,9 @@ export const projects: Project[] = [
       ],
     },
     screens: [
-      { src: '/images/work/road-pilot-driver/screen-1.png', alt: 'Road Pilot Driver — Manage Shipments: home screen with active job AUX7624 showing Lucknow to Gurgaon route, owner details and real-time tracking map', ratio: '1672/941' },
-      { src: '/images/work/road-pilot-driver/screen-2.png', alt: 'Road Pilot Driver — Shipment Booking & Confirmation: confirm shipment summary with route overview map and shipment booked success state', ratio: '1672/941' },
-      { src: '/images/work/road-pilot-driver/screen-3.png', alt: 'Road Pilot Driver — Find the Right Loads Faster: filter jobs screen with route details, distance and earnings sliders, and shipment detail with timeline', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-1.jpg', alt: 'Road Pilot Driver — Manage Shipments: home screen with active job AUX7624 showing Lucknow to Gurgaon route, owner details and real-time tracking map', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-2.jpg', alt: 'Road Pilot Driver — Shipment Booking & Confirmation: confirm shipment summary with route overview map and shipment booked success state', ratio: '1672/941' },
+      { src: '/images/work/road-pilot-driver/screen-3.jpg', alt: 'Road Pilot Driver — Find the Right Loads Faster: filter jobs screen with route details, distance and earnings sliders, and shipment detail with timeline', ratio: '1672/941' },
     ],
     decisions: [
       { title: 'Visual hierarchy — key actions as focal points', rationale: 'Job cards and primary CTAs are the focal points on each screen, followed by supporting interaction elements, so drivers can act quickly while on the road.' },
@@ -356,13 +360,14 @@ export const projects: Project[] = [
   // ─────────────────────── CONSCIOUS APP ───────────────────────
   {
     slug: 'conscious-app',
+    kind: 'Concept project',
     title: 'Conscious App',
     tagline: 'A mindful wellness app to help you explore inner balance, reflect on emotions, and build a calm daily practice.',
     category: 'Mobile · Wellbeing',
     context: 'Explore inner balance',
     year: '2025',
     accent: 'sand',
-    cover: { src: '/images/work/conscious-app/cover.png', alt: 'Conscious App — A Healthier You, Every Day: mindful wellness app screens showing emotion check-in and splash screen', ratio: '1672/941' },
+    cover: { src: '/images/work/conscious-app/cover.jpg', alt: 'Conscious App — A Healthier You, Every Day: mindful wellness app screens showing emotion check-in and splash screen', ratio: '1672/941' },
     overview: 'Conscious is a mindful wellness app designed to help users explore inner balance, reduce mental noise, encourage reflections, and build a slow and peaceful digital experience. The platform addresses the growing need for a simple, calm space where people can check in with their emotions, engage in breathing sessions, and develop better mental habits.',
     role: 'UI/UX Designer',
     responsibilities: [
@@ -414,7 +419,7 @@ export const projects: Project[] = [
       ],
     },
     screens: [
-      { src: '/images/work/conscious-app/screen-1.png', alt: 'Conscious App high-fidelity screens — splash screen, mood selection (How are you feeling?), active mood selection with Tired highlighted, and Calm Soundscape session playing Deep Forest Rain', ratio: '1672/941' },
+      { src: '/images/work/conscious-app/screen-1.jpg', alt: 'Conscious App high-fidelity screens — splash screen, mood selection (How are you feeling?), active mood selection with Tired highlighted, and Calm Soundscape session playing Deep Forest Rain', ratio: '1672/941' },
     ],
     decisions: [
       {
@@ -423,7 +428,7 @@ export const projects: Project[] = [
       },
       {
         title: 'Motion-driven breathing guide',
-        rationale: 'Motion acts as a visual breathing guide, eliminating the need for on-screen instructions. This keeps the session screen sound, uncluttered and fully immersive.',
+        rationale: 'Motion acts as a visual breathing guide, eliminating the need for on-screen instructions. This keeps the session screen quiet, uncluttered and immersive.',
       },
       {
         title: 'Reduced cognitive effort at every step',

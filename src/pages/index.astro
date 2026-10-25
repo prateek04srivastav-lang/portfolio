@@ -62,7 +62,10 @@ const placeholderCount = countPlaceholders({ projects: projects.map(({ title, ta
           }
         </div>
         <div style="display:grid;gap:16px;justify-items:start">
-          <a class="btn" href="#work">View my work <span class="arrow" aria-hidden="true">↓</span></a>
+          <div class="hero__actions">
+            <a class="btn" href="#work">View my work <span class="arrow" aria-hidden="true">↓</span></a>
+            <a class="btn btn--ghost" href="#contact">Get in touch</a>
+          </div>
           <span class="hero__status">{site.availability}</span>
         </div>
       </div>
@@ -157,6 +160,17 @@ const placeholderCount = countPlaceholders({ projects: projects.map(({ title, ta
               <span class="process__num">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="process__title">{step.title}</h3>
               <p class="process__text">{step.text}</p>
+              {step.seenIn && (
+                <p class="process__seen">
+                  Applied in{' '}
+                  {step.seenIn.map((s, j) => (
+                    <>
+                      {j > 0 && ', '}
+                      <a href={s.href}>{s.label}</a>
+                    </>
+                  ))}
+                </p>
+              )}
             </li>
           ))
         }

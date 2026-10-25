@@ -14,7 +14,7 @@ const { media, variant = 'box', title = '', accent = 'lime', eager = false } = A
 const ratio = media.ratio ?? '16/10';
 ---
 
-<figure class:list={['media', `media--${variant}`, `accent-${accent}`]} style={`--ratio:${ratio}`}>
+<figure class:list={['media', `media--${variant}`, `accent-${accent}`, { 'media--captioned': media.src && media.caption }]} style={`--ratio:${ratio}`}>
   {
     media.src ? (
       <img src={media.src} alt={media.alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />

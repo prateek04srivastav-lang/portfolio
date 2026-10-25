@@ -25,6 +25,7 @@ const { project, index, wide = false } = Astro.props;
     </div>
     <Rich as="p" class="card__tagline" text={project.tagline} />
     <div class="card__meta">
+      <span class:list={['chip', 'chip--kind', { 'chip--product': project.kind === 'Product work' }]}>{project.kind}</span>
       <span class="chip">Role:&nbsp;<Rich text={project.role} /></span>
       <span class="chip"><Rich text={project.context} /></span>
     </div>
